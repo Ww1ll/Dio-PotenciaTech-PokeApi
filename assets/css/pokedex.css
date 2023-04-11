@@ -75,6 +75,10 @@
    color: #fff;
 }
 
+.pagination button:hover{
+    cursor: pointer;
+}
+
 .normal {
     background-color: #b3b48a;
 }
