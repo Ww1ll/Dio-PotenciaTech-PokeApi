@@ -1,6 +1,10 @@
 
-
 const PokeApi = {}
+
+PokeApi.getPokemonDetail = (pokemon) => {
+    return fetch(pokemon.url)
+    .then((response) =>response.json())
+}
 
 PokeApi.getPokemons = (offset = 0, limit = 10) => {
 
@@ -13,7 +17,13 @@ PokeApi.getPokemons = (offset = 0, limit = 10) => {
     .then((jsonBody) => {
         return jsonBody.results
     })
+    .then((pokemons) => pokemons.map((PokeApi.getPokemonDetail)))
+    .then((detailRequests) => Promise.all(detailRequests))
+    .then((pokemonDetails) => {
+        return pokemonDetails
+    })
     .catch((error) =>{
         console.log(error)
     })
 }
+
